@@ -1,0 +1,19 @@
+---
+output: html_document
+---
+Elements Of Data Visualization: Tableau Project 2
+===
+__By Alex Cortez, Adam Hernandez, and Alex Pearce__
+
+__GitHub__: https://github.com/joseacortez91/DV_TableauProject2
+
+In this project, we utilize R and Tableau to generate various Crosstabs using [Description of Data]
+
+## Crosstabs
+
+####Module Requirements
+
+```{r message=F}
+library('RCurl')
+library('ggplot2')
+```
