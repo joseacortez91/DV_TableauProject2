@@ -64,7 +64,7 @@ img {
 <div id="elements-of-data-visualization-tableau-project-2" class="section level1">
 <h1>Elements Of Data Visualization: Tableau Project 2</h1>
 <p><strong>By Alex Cortez, Adam Hernandez, and Alex Pearce</strong></p>
-<p><strong>GitHub</strong>: <a href="https://github.com/joseacortez91/DV_TableauProject2">https://github.com/joseacortez91/DV_TableauProject2</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/joseacortez91/DV_TableauProject2" class="uri">https://github.com/joseacortez91/DV_TableauProject2</a></p>
 <p>In this project, we utilize R and Tableau to generate various Crosstabs using data on hospital finances from across the country.</p>
 <div id="first-we-will-load-up-the-necessary-packages" class="section level2">
 <h2>First we will load up the necessary packages</h2>
@@ -90,10 +90,12 @@ img {
 ## 
 ## &gt; library(&quot;extrafont&quot;)
 ## 
-## &gt; library(&quot;scales&quot;)</code></pre>
+## &gt; library(&quot;scales&quot;)
+## 
+## &gt; library(&quot;knitr&quot;)</code></pre>
 </div>
 <div id="lets-take-a-look-at-the-full-table" class="section level2">
-<h2>Lets take a look at the full table</h2>
+<h2>Let’s take a look at the full table</h2>
 <pre class="r"><code>source(&quot;../01 SQL Crosstabs/full_df.R&quot;,echo=TRUE)</code></pre>
 <pre><code>## 
 ## &gt; full_df &lt;- data.frame(fromJSON(getURL(URLencode(gsub(&quot;\n&quot;, 
@@ -122,10 +124,65 @@ img {
 </div>
 <div id="crosstabs" class="section level2">
 <h2>Crosstabs</h2>
-<div id="rank-crosstab-description" class="section level3">
-<h3>Rank Crosstab description</h3>
+<div id="rank-crosstab-returns-highest-number-of-discharges-and-its-associated-drg_definition-per-city." class="section level3">
+<h3>Rank Crosstab: Returns Highest number of discharges and its associated DRG_Definition per city.</h3>
 <div id="sql" class="section level4">
 <h4>SQL</h4>
+<pre class="r"><code>source(&quot;../01 SQL Crosstabs/rank.R&quot;,echo=TRUE)</code></pre>
+<blockquote>
+<p>rank_df &lt;- data.frame(fromJSON(getURL(URLencode(gsub(“”, + &quot; “,”129.152.144.84:5001/rest/native/?query=&quot;SELECT * FROM (SELECT drg_definit …. [TRUNCATED]</p>
+</blockquote>
+<blockquote>
+<p>kable(head(rank_df))</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th align="left">DRG_DEFINITION</th>
+<th align="left">PROVIDER_CITY</th>
+<th align="right">TOTAL_DISCHARGES</th>
+<th align="right">DISCHARGE_RANK</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">470 - MAJOR JOINT REPLACEMENT OR REATTACHMENT OF LOWER EXTREMITY W/O MCC</td>
+<td align="left">NEW YORK</td>
+<td align="right">3383</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">885 - PSYCHOSES</td>
+<td align="left">NATIONAL CITY</td>
+<td align="right">1696</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">897 - ALCOHOL/DRUG ABUSE OR DEPENDENCE W/O REHABILITATION THERAPY W/O MCC</td>
+<td align="left">WORCESTER</td>
+<td align="right">1571</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">885 - PSYCHOSES</td>
+<td align="left">CHICAGO</td>
+<td align="right">1487</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">470 - MAJOR JOINT REPLACEMENT OR REATTACHMENT OF LOWER EXTREMITY W/O MCC</td>
+<td align="left">BOSTON</td>
+<td align="right">1464</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">392 - ESOPHAGITIS, GASTROENT &amp; MISC DIGEST DISORDERS W/O MCC</td>
+<td align="left">ORLANDO</td>
+<td align="right">1344</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="tableau" class="section level4">
 <h4>Tableau</h4>
@@ -136,26 +193,67 @@ img {
 <div id="lets-do-it-in-sql" class="section level4">
 <h4>Let’s do it in SQL</h4>
 <pre class="r"><code>source(&quot;../01 SQL Crosstabs/max_and_diff_TX.R&quot;,echo=TRUE)</code></pre>
-<pre><code>## 
-## &gt; max_and_diff_TX_df &lt;- data.frame(fromJSON(getURL(URLencode(gsub(&quot;\n&quot;, 
-## +     &quot; &quot;, &quot;129.152.144.84:5001/rest/native/?query=\n\&quot;select provider_state, .... [TRUNCATED] 
-## 
-## &gt; tbl_df(max_and_diff_TX_df)
-## Source: local data frame [11,864 x 5]
-## 
-##    PROVIDER_STATE PROVIDER_ZIP_CODE AVERAGE_TOTAL_PAYMENTS
-## 1              TX             75001               21244.78
-## 2              TX             75001               12529.22
-## 3              TX             75001               11821.26
-## 4              TX             75001                5086.60
-## 5              TX             75010               37508.41
-## 6              TX             75010               24842.29
-## 7              TX             75010               15171.48
-## 8              TX             75010               14705.73
-## 9              TX             75010               13243.36
-## 10             TX             75010               13004.14
-## ..            ...               ...                    ...
-## Variables not shown: MAX_TOTAL_PAYMENTS (dbl), TOTAL_PAYMENTS_DIFF (dbl)</code></pre>
+<blockquote>
+<p>max_and_diff_TX_df &lt;- data.frame(fromJSON(getURL(URLencode(gsub(“”, + &quot; “,”129.152.144.84:5001/rest/native/?query=&quot;select provider_state, …. [TRUNCATED]</p>
+</blockquote>
+<blockquote>
+<p>kable(head(max_and_diff_TX_df))</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th align="left">PROVIDER_STATE</th>
+<th align="right">PROVIDER_ZIP_CODE</th>
+<th align="right">AVERAGE_TOTAL_PAYMENTS</th>
+<th align="right">MAX_TOTAL_PAYMENTS</th>
+<th align="right">TOTAL_PAYMENTS_DIFF</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TX</td>
+<td align="right">75001</td>
+<td align="right">21244.78</td>
+<td align="right">21244.78</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">TX</td>
+<td align="right">75001</td>
+<td align="right">12529.22</td>
+<td align="right">21244.78</td>
+<td align="right">8715.56</td>
+</tr>
+<tr class="odd">
+<td align="left">TX</td>
+<td align="right">75001</td>
+<td align="right">11821.26</td>
+<td align="right">21244.78</td>
+<td align="right">9423.52</td>
+</tr>
+<tr class="even">
+<td align="left">TX</td>
+<td align="right">75001</td>
+<td align="right">5086.60</td>
+<td align="right">21244.78</td>
+<td align="right">16158.18</td>
+</tr>
+<tr class="odd">
+<td align="left">TX</td>
+<td align="right">75010</td>
+<td align="right">37508.41</td>
+<td align="right">37508.41</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">TX</td>
+<td align="right">75010</td>
+<td align="right">24842.29</td>
+<td align="right">37508.41</td>
+<td align="right">12666.12</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="now-in-tableau" class="section level4">
 <h4>Now in Tableau</h4>
@@ -173,10 +271,58 @@ img {
 <hr />
 </div>
 </div>
-<div id="cume_dist-crosstab-description" class="section level3">
-<h3>cume_dist Crosstab description</h3>
+<div id="cume_dist-crosstab-retuns-the-national-cumulative-distribution-of-average-covered-charges-for-records-with-the-drg_definition-of-885---psychoses" class="section level3">
+<h3>Cume_dist Crosstab: Retuns the National Cumulative Distribution of average covered charges for records with the drg_definition of “885 - PSYCHOSES”</h3>
 <div id="sql-2" class="section level4">
 <h4>SQL</h4>
+<pre class="r"><code>source(&quot;../01 SQL Crosstabs/cume_dist.R&quot;,echo=TRUE)</code></pre>
+<blockquote>
+<p>cume_df &lt;- data.frame(fromJSON(getURL(URLencode(gsub(“”, + &quot; “,”129.152.144.84:5001/rest/native/?query=&quot;SELECT STATE, SUM_COVERAGE, cume_ …. [TRUNCATED]</p>
+</blockquote>
+<blockquote>
+<p>kable(head(cume_df))</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th align="left">STATE</th>
+<th align="right">SUM_COVERAGE</th>
+<th align="right">CUME_DIST</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">CA</td>
+<td align="right">1567686.0</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">NJ</td>
+<td align="right">1218887.4</td>
+<td align="right">0.9795918</td>
+</tr>
+<tr class="odd">
+<td align="left">FL</td>
+<td align="right">850315.6</td>
+<td align="right">0.9591837</td>
+</tr>
+<tr class="even">
+<td align="left">PA</td>
+<td align="right">697911.6</td>
+<td align="right">0.9387755</td>
+</tr>
+<tr class="odd">
+<td align="left">TX</td>
+<td align="right">645135.8</td>
+<td align="right">0.9183673</td>
+</tr>
+<tr class="even">
+<td align="left">IL</td>
+<td align="right">626960.0</td>
+<td align="right">0.8979592</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="tableau-2" class="section level4">
 <h4>Tableau</h4>
