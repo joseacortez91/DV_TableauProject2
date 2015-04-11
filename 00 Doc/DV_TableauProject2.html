@@ -124,13 +124,13 @@ img {
 </div>
 <div id="crosstabs" class="section level2">
 <h2>Crosstabs</h2>
-<div id="rank-crosstab-returns-highest-number-of-discharges-and-its-associated-drg_definition-per-city." class="section level3">
-<h3>Rank Crosstab: Returns Highest number of discharges and its associated DRG_Definition per city.</h3>
+<div id="this-ranked-crosstab-provides-lowest-average-total-payments-for-chest-pain-hospital-visits-in-the-central-texas-area-and-ranks-them-by-affordability." class="section level3">
+<h3>This ranked Crosstab provides lowest average total payments for “Chest Pain” hospital visits in the central Texas area, and ranks them by affordability.</h3>
 <div id="sql" class="section level4">
 <h4>SQL</h4>
 <pre class="r"><code>source(&quot;../01 SQL Crosstabs/rank.R&quot;,echo=TRUE)</code></pre>
 <blockquote>
-<p>rank_df &lt;- data.frame(fromJSON(getURL(URLencode(gsub(“”, + &quot; “,”129.152.144.84:5001/rest/native/?query=&quot;SELECT * FROM (SELECT drg_definit …. [TRUNCATED]</p>
+<p>rank_df &lt;- data.frame(fromJSON(getURL(URLencode(gsub(“”, + &quot; “,”129.152.144.84:5001/rest/native/?query=&quot;SELECT provider_name, provider_ci …. [TRUNCATED]</p>
 </blockquote>
 <blockquote>
 <p>kable(head(rank_df))</p>
@@ -138,48 +138,48 @@ img {
 <table>
 <thead>
 <tr class="header">
-<th align="left">DRG_DEFINITION</th>
+<th align="left">PROVIDER_NAME</th>
 <th align="left">PROVIDER_CITY</th>
-<th align="right">TOTAL_DISCHARGES</th>
-<th align="right">DISCHARGE_RANK</th>
+<th align="right">AVERAGE_TOTAL_PAYMENTS</th>
+<th align="right">AFFORDABILITY_RANK</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">470 - MAJOR JOINT REPLACEMENT OR REATTACHMENT OF LOWER EXTREMITY W/O MCC</td>
-<td align="left">NEW YORK</td>
-<td align="right">3383</td>
+<td align="left">PROVIDENCE HEALTH CENTER</td>
+<td align="left">WACO</td>
+<td align="right">3094.32</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="left">885 - PSYCHOSES</td>
-<td align="left">NATIONAL CITY</td>
-<td align="right">1696</td>
-<td align="right">1</td>
+<td align="left">SETON MEDICAL CENTER WILLIAMSON</td>
+<td align="left">ROUND ROCK</td>
+<td align="right">3105.74</td>
+<td align="right">2</td>
 </tr>
 <tr class="odd">
-<td align="left">897 - ALCOHOL/DRUG ABUSE OR DEPENDENCE W/O REHABILITATION THERAPY W/O MCC</td>
-<td align="left">WORCESTER</td>
-<td align="right">1571</td>
-<td align="right">1</td>
+<td align="left">DOCTORS HOSPITAL</td>
+<td align="left">DALLAS</td>
+<td align="right">3267.93</td>
+<td align="right">3</td>
 </tr>
 <tr class="even">
-<td align="left">885 - PSYCHOSES</td>
-<td align="left">CHICAGO</td>
-<td align="right">1487</td>
-<td align="right">1</td>
+<td align="left">METHODIST STONE OAK HOSPITAL</td>
+<td align="left">SAN ANTONIO</td>
+<td align="right">3281.03</td>
+<td align="right">4</td>
 </tr>
 <tr class="odd">
-<td align="left">470 - MAJOR JOINT REPLACEMENT OR REATTACHMENT OF LOWER EXTREMITY W/O MCC</td>
-<td align="left">BOSTON</td>
-<td align="right">1464</td>
-<td align="right">1</td>
+<td align="left">ROUND ROCK MEDICAL CENTER</td>
+<td align="left">ROUND ROCK</td>
+<td align="right">3327.00</td>
+<td align="right">5</td>
 </tr>
 <tr class="even">
-<td align="left">392 - ESOPHAGITIS, GASTROENT &amp; MISC DIGEST DISORDERS W/O MCC</td>
-<td align="left">ORLANDO</td>
-<td align="right">1344</td>
-<td align="right">1</td>
+<td align="left">SETON NORTHWEST HOSPITAL</td>
+<td align="left">AUSTIN</td>
+<td align="right">3347.44</td>
+<td align="right">6</td>
 </tr>
 </tbody>
 </table>
@@ -271,13 +271,13 @@ img {
 <hr />
 </div>
 </div>
-<div id="cume_dist-crosstab-retuns-the-national-cumulative-distribution-of-average-covered-charges-for-records-with-the-drg_definition-of-885---psychoses" class="section level3">
-<h3>Cume_dist Crosstab: Retuns the National Cumulative Distribution of average covered charges for records with the drg_definition of “885 - PSYCHOSES”</h3>
+<div id="in-this-crosstab-the-sql-cumulative-distribution-function-is-utilized-to-return-average-cost-information-for-central-texas-with-cumulative-distribution-partitioned-by-city.-these-results-are-for-records-with-the-drg_definition-of-885---psychoses" class="section level3">
+<h3>In this Crosstab, the SQL cumulative distribution function is utilized to return average cost information for central Texas, with cumulative distribution partitioned by city. These results are for records with the drg_definition of ‘885 - PSYCHOSES’</h3>
 <div id="sql-2" class="section level4">
 <h4>SQL</h4>
 <pre class="r"><code>source(&quot;../01 SQL Crosstabs/cume_dist.R&quot;,echo=TRUE)</code></pre>
 <blockquote>
-<p>cume_df &lt;- data.frame(fromJSON(getURL(URLencode(gsub(“”, + &quot; “,”129.152.144.84:5001/rest/native/?query=&quot;SELECT STATE, SUM_COVERAGE, cume_ …. [TRUNCATED]</p>
+<p>cume_df &lt;- data.frame(fromJSON(getURL(URLencode(gsub(“”, + &quot; “,”129.152.144.84:5001/rest/native/?query=&quot;SELECT provider_name, provider_ci …. [TRUNCATED]</p>
 </blockquote>
 <blockquote>
 <p>kable(head(cume_df))</p>
@@ -285,41 +285,48 @@ img {
 <table>
 <thead>
 <tr class="header">
-<th align="left">STATE</th>
-<th align="right">SUM_COVERAGE</th>
+<th align="left">PROVIDER_NAME</th>
+<th align="left">PROVIDER_CITY</th>
+<th align="right">AVERAGE_TOTAL_PAYMENTS</th>
 <th align="right">CUME_DIST</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">CA</td>
-<td align="right">1567686.0</td>
-<td align="right">1.0000000</td>
+<td align="left">SETON MEDICAL CENTER AUSTIN</td>
+<td align="left">AUSTIN</td>
+<td align="right">5155.73</td>
+<td align="right">1.0</td>
 </tr>
 <tr class="even">
-<td align="left">NJ</td>
-<td align="right">1218887.4</td>
-<td align="right">0.9795918</td>
+<td align="left">MEDICAL CITY DALLAS HOSPITAL</td>
+<td align="left">DALLAS</td>
+<td align="right">5602.20</td>
+<td align="right">0.5</td>
 </tr>
 <tr class="odd">
-<td align="left">FL</td>
-<td align="right">850315.6</td>
-<td align="right">0.9591837</td>
+<td align="left">TEXAS HEALTH PRESBYTERIAN HOSPITAL DALLAS</td>
+<td align="left">DALLAS</td>
+<td align="right">6104.08</td>
+<td align="right">1.0</td>
 </tr>
 <tr class="even">
-<td align="left">PA</td>
-<td align="right">697911.6</td>
-<td align="right">0.9387755</td>
+<td align="left">BAPTIST MEDICAL CENTER</td>
+<td align="left">SAN ANTONIO</td>
+<td align="right">5739.57</td>
+<td align="right">0.2</td>
 </tr>
 <tr class="odd">
-<td align="left">TX</td>
-<td align="right">645135.8</td>
-<td align="right">0.9183673</td>
+<td align="left">METHODIST HOSPITAL</td>
+<td align="left">SAN ANTONIO</td>
+<td align="right">6107.52</td>
+<td align="right">0.4</td>
 </tr>
 <tr class="even">
-<td align="left">IL</td>
-<td align="right">626960.0</td>
-<td align="right">0.8979592</td>
+<td align="left">NIX HEALTH CARE SYSTEM</td>
+<td align="left">SAN ANTONIO</td>
+<td align="right">6783.01</td>
+<td align="right">0.6</td>
 </tr>
 </tbody>
 </table>

@@ -22,8 +22,7 @@ source("../01 SQL Crosstabs/full_df.R",echo=TRUE)
 
 ##Crosstabs
 
-###Rank Crosstab: Returns Highest number of discharges and its associated DRG_Definition per city.
-
+### This ranked Crosstab provides lowest average total payments for "Chest Pain" hospital visits in the central Texas area, and ranks them by affordability. 
 ####SQL
 ```{r message=F, results='asis'}
 source("../01 SQL Crosstabs/rank.R",echo=TRUE)
@@ -53,7 +52,7 @@ source("../01 SQL Crosstabs/max_and_diff_TX.R",echo=TRUE)
 
 ***
 
-###Cume_dist Crosstab: Retuns the National Cumulative Distribution of average covered charges for records with the drg_definition of "885 - PSYCHOSES"
+###In this Crosstab, the SQL cumulative distribution function is utilized to return average cost information for central Texas, with cumulative distribution partitioned by city. These results are for records with the drg_definition of '885 - PSYCHOSES'
 
 ####SQL
 ```{r message=F, results='asis'}
