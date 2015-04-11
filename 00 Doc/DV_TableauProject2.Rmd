@@ -7,16 +7,15 @@ __By Alex Cortez, Adam Hernandez, and Alex Pearce__
 
 __GitHub__: https://github.com/joseacortez91/DV_TableauProject2
 
-In this project, we utilize R and Tableau to generate various Crosstabs using [Description of Data]
+In this project, we utilize R and Tableau to generate various Crosstabs using data on hospital finances from across the country.
 
-##Module Requirements
+##First we will load up the necessary packages
 
 ```{r message=F}
-library('RCurl')
-library('ggplot2')
+source("../01 SQL Crosstabs/load_packages.R",echo=TRUE)
 ```
 
-##Lets pull in our full data frame so we can take a look at the data
+##Lets take a look at the full table
 ```{r message=F}
 source("../01 SQL Crosstabs/full_df.R",echo=TRUE)
 ```
@@ -31,3 +30,4 @@ source("../01 SQL Crosstabs/max_and_diff_TX.R",echo=TRUE)
 ```
 
 ####Now in Tableau
+![](../02 Tableau Workbook/max_and_diff_TX.png)
