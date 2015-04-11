@@ -29,6 +29,7 @@ source("../01 SQL Crosstabs/rank.R",echo=TRUE)
 ```
 
 ####Tableau
+![](./rank.png)
 
 ###For this crosstab, we will be looking at Texas hospitals. Let's add two columns, one for the maximum average total payments per zip code and another for the difference between the current average total payments and the maximum
 
