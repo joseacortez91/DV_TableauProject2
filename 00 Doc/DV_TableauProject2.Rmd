@@ -22,6 +22,13 @@ source("../01 SQL Crosstabs/full_df.R",echo=TRUE)
 
 ##Crosstabs
 
+###Rank Crosstab description
+
+####SQL
+
+
+####Tableau
+
 ###For this crosstab, we will be looking at Texas hospitals. Let's add two columns, one for the maximum average total payments per zip code and another for the difference between the current average total payments and the maximum
 
 ####Let's do it in SQL
@@ -29,5 +36,26 @@ source("../01 SQL Crosstabs/full_df.R",echo=TRUE)
 source("../01 SQL Crosstabs/max_and_diff_TX.R",echo=TRUE)
 ```
 
+
 ####Now in Tableau
-![](../02 Tableau Workbook/max_and_diff_TX.png)
+![](./max_and_diff_TX.png)
+
+***
+
+###nth_value Crosstab description
+
+####SQL
+
+
+####Tableau
+
+***
+
+###cume_dist Crosstab description
+
+####SQL
+
+
+####Tableau
+
+***
