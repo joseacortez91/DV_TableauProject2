@@ -61,5 +61,5 @@ source("../01 SQL Crosstabs/cume_dist.R",echo=TRUE)
 ```
 
 ####Tableau
-
+![](./cume_dist.png)
 ***
