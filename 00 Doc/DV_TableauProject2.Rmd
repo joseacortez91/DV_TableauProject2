@@ -54,6 +54,7 @@ source("../01 SQL Crosstabs/nth.R",echo=TRUE)
 ```
 
 ####Tableau
+![](./nth.png)
 
 ***
 
