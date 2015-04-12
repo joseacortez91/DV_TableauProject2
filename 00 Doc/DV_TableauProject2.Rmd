@@ -31,6 +31,8 @@ source("../01 SQL Crosstabs/rank.R",echo=TRUE)
 ####Tableau
 ![](./rank.png)
 
+***
+
 ###For this crosstab, we will be looking at Texas hospitals. Let's add two columns, one for the maximum average total payments per zip code and another for the difference between the current average total payments and the maximum
 
 ####Let's do it in SQL
@@ -44,10 +46,12 @@ source("../01 SQL Crosstabs/max_and_diff_TX.R",echo=TRUE)
 
 ***
 
-###nth_value Crosstab description
+###For this Crosstab, we look at records where drg_definition = '069 - TRANSIENT ISCHEMIA' and the average total costs across cities in Texas. The nth_value function from the dplyr R package is used to find the maximum average total payment for each city.
 
 ####SQL
-
+```{r message=F, results='asis'}
+source("../01 SQL Crosstabs/nth.R",echo=TRUE)
+```
 
 ####Tableau
 
@@ -62,4 +66,5 @@ source("../01 SQL Crosstabs/cume_dist.R",echo=TRUE)
 
 ####Tableau
 ![](./cume_dist.png)
+
 ***
